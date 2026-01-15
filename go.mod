@@ -1,4 +1,4 @@
-module github.com/caddy-dns/spaceship
+module github.com/m1rz/spaceship-dns
 
 go 1.25
 
