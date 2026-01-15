@@ -8,7 +8,7 @@ import (
 
 	"github.com/caddyserver/caddy/v2"
 	"github.com/caddyserver/caddy/v2/caddyconfig/caddyfile"
-	libdnsspaceship "github.com/libdns/spaceship"
+	libdnsspaceship "github.com/m1rz/spaceship-libdns"
 )
 
 // Provider lets Caddy read and manipulate DNS records hosted by the Spaceship DNS provider.
@@ -57,9 +57,9 @@ func (p *Provider) Provision(ctx caddy.Context) error {
 
 // UnmarshalCaddyfile sets up the DNS provider from Caddyfile tokens. Syntax:
 //
-//     providername [<api_token>] {
-//         api_token <api_token>
-//     }
+//	providername [<api_token>] {
+//	    api_token <api_token>
+//	}
 //
 // **THIS IS JUST AN EXAMPLE AND NEEDS TO BE CUSTOMIZED.**
 func (p *Provider) UnmarshalCaddyfile(d *caddyfile.Dispenser) error {

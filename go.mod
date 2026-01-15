@@ -4,7 +4,7 @@ go 1.25
 
 require (
 	github.com/caddyserver/caddy/v2 v2.10.2
-	github.com/libdns/spaceship v1.0.0
+	github.com/m1rz/spaceship-libdns v0.0.0-20260115122642-45f695330430
 )
 
 require (

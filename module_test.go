@@ -1,14 +1,14 @@
 package spaceship
 
 import (
-    "os"
-    "strings"
-    "testing"
-    "time"
+	"os"
+	"strings"
+	"testing"
+	"time"
 
-    "github.com/caddyserver/caddy/v2"
-    "github.com/caddyserver/caddy/v2/caddyconfig/caddyfile"
-    libdnsspaceship "github.com/libdns/spaceship"
+	"github.com/caddyserver/caddy/v2"
+	"github.com/caddyserver/caddy/v2/caddyconfig/caddyfile"
+	libdnsspaceship "github.com/m1rz/spaceship-libdns"
 )
 
 // tokenize is a very small tokenizer sufficient for the test snippets.
@@ -44,21 +44,21 @@ func tokenize(file, input string) []caddyfile.Token {
 
 // helper to run UnmarshalCaddyfile on a snippet
 func parseProvider(t *testing.T, input string) *Provider {
-    t.Helper()
-    p := &Provider{new(libdnsspaceship.Provider)}
-    toks := tokenize("test.caddy", input)
-    d := caddyfile.NewDispenser(toks)
-    if err := p.UnmarshalCaddyfile(d); err != nil {
-        t.Fatalf("UnmarshalCaddyfile failed: %v", err)
-    }
-    return p
+	t.Helper()
+	p := &Provider{new(libdnsspaceship.Provider)}
+	toks := tokenize("test.caddy", input)
+	d := caddyfile.NewDispenser(toks)
+	if err := p.UnmarshalCaddyfile(d); err != nil {
+		t.Fatalf("UnmarshalCaddyfile failed: %v", err)
+	}
+	return p
 }
 
 func TestUnmarshalCaddyfile_Inline(t *testing.T) {
-    p := parseProvider(t, `spaceship key123 secret456`)
-    if p.APIKey != "key123" || p.APISecret != "secret456" {
-        t.Fatalf("unexpected credentials: %s / %s", p.APIKey, p.APISecret)
-    }
+	p := parseProvider(t, `spaceship key123 secret456`)
+	if p.APIKey != "key123" || p.APISecret != "secret456" {
+		t.Fatalf("unexpected credentials: %s / %s", p.APIKey, p.APISecret)
+	}
 }
 
 func TestUnmarshalCaddyfile_Block(t *testing.T) {
